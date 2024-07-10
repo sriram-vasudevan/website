@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When will crypto get mainstream?</title>
+    <meta name="blog-date" content="10-07-2024">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="content">
+        <div class="theme-toggle" id="theme-toggle"></div>
+        <a href="../index.html" class="back-link">← Back to Home</a>
+        <article>
+            <h1>When will crypto get mainstream?</h1>
+            <time datetime="2024-07-10">July 10, 2024</time>
+            
+            <div class="post-content">
+                <p>Blockchain is becoming increasingly important as the number of blockchain networks continues to grow. In this post, we'll explore the future of blockchain interoperability and its potential impact on the crypto ecosystem.</p>
+                
+                <h2>Permisionless Composability</h2>
+                <h2>Permisionless Soverignity</h2>
+                <h2>Inbuilt Speculation</h2>
+
+                <h2>Conclusion</h2>
+                <p>As we move towards a more interconnected blockchain future, interoperability will play a crucial role in shaping the landscape of decentralized technologies.</p>
+            </div>
+        </article>
+    </div>
+
+    <script>
+        // Theme toggle functionality (unchanged)
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function setTheme(isDark) {
+            body.classList.toggle('light', !isDark);
+            themeToggle.classList.toggle('light', !isDark);
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme !== 'light');
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = !body.classList.contains('light');
+            setTheme(!isDark);
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+    </script>
+</body>
+</html>
