@@ -92,6 +92,12 @@
         body.light h1, body.light h2 {
             color: #000000;
         }
+        
+        .post-link {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
     </style>
 </head>
 <body>
@@ -119,7 +125,13 @@
         <p>In my past life I was contributing at <a href="https://indexcoop.com/">IndexCoop</a>, <a href="https://superteam.fun/">SuperTeam</a> and several education NGOs.</a> </p>
         
             <h2>Posts</h2>
-        <h3>[WIP]</h3>
+
+        <div id="posts">
+            <a href="#" class="post-link" data-post="post1">[2024-07-01] The Future of Blockchain Interoperability</a>
+            <a href="#" class="post-link" data-post="post2">[2024-06-15] Decentralized Finance: Opportunities and Challenges</a>
+            <a href="#" class="post-link" data-post="post3">[2024-05-30] Web3 Marketing Strategies for 2024</a>
+        </div>
+        
         </div>
     </div>
     
@@ -141,6 +153,16 @@
             setTheme(!isDark);
             localStorage.setItem('theme', isDark ? 'light' : 'dark');
         });
+
+        // Add event listeners to post links
+        document.querySelectorAll('.post-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const postId = this.getAttribute('data-post');
+                window.location.href = `${postId}.html`;
+            });
+        });
+        
     </script>
 </body>
 </html>
