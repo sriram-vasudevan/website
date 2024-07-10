@@ -151,6 +151,44 @@
             setTheme(!isDark);
             localStorage.setItem('theme', isDark ? 'light' : 'dark');
         });
+
+        // Function to format date as "14 May 2024"
+        function formatDate(dateString) {
+            const [day, month, year] = dateString.split('-');
+            const date = new Date(year, month - 1, day);
+            return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        // Function to fetch and display blog posts
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch('blog-posts.json');
+                const posts = await response.json();
+                
+                // Sort posts by date (assuming filename format: dd-mm-yyyy-title.html)
+                posts.sort((a, b) => {
+                    const dateA = new Date(a.filename.split('-').slice(0, 3).reverse().join('-'));
+                    const dateB = new Date(b.filename.split('-').slice(0, 3).reverse().join('-'));
+                    return dateB - dateA;
+                });
+
+                const postsContainer = document.getElementById('posts');
+                posts.forEach(post => {
+                    const datePart = post.filename.split('-').slice(0, 3).join('-');
+                    const formattedDate = formatDate(datePart);
+                    const link = document.createElement('a');
+                    link.href = `posts/${post.filename}`;
+                    link.className = 'post-link';
+                    link.textContent = `${formattedDate} ${post.title}`;
+                    postsContainer.appendChild(link);
+                });
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+            }
+        }
+
+        // Load blog posts when the page is ready
+        document.addEventListener('DOMContentLoaded', loadBlogPosts);
         
     </script>
 </body>
