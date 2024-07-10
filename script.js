@@ -20,7 +20,7 @@ themeToggle.addEventListener('click', () => {
 function formatDate(dateString) {
     const [day, month, year] = dateString.split('-');
     const date = new Date(year, month - 1, day);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    return `[${date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}]`;
 }
 
 // Function to fetch and display blog posts
