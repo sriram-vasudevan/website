@@ -127,10 +127,8 @@
             <h2>Posts</h2>
 
         <div id="posts">
-            <a href="#" class="post-link" data-post="post1">[2024-07-01] The Future of Blockchain Interoperability</a>
-            <a href="#" class="post-link" data-post="post2">[2024-06-15] Decentralized Finance: Opportunities and Challenges</a>
-            <a href="#" class="post-link" data-post="post3">[2024-05-30] Web3 Marketing Strategies for 2024</a>
-        </div>
+            <a href="posts/crypto.html" class="post-link">[May '24] When will crypto get mainstream?</a>
+            <a href="posts/truth.html" class="post-link">[Jun '24] Seeking truth</a>
         
         </div>
     </div>
@@ -152,15 +150,6 @@
             const isDark = !body.classList.contains('light');
             setTheme(!isDark);
             localStorage.setItem('theme', isDark ? 'light' : 'dark');
-        });
-
-        // Add event listeners to post links
-        document.querySelectorAll('.post-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const postId = this.getAttribute('data-post');
-                window.location.href = `${postId}.html`;
-            });
         });
         
     </script>
