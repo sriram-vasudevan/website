@@ -26,6 +26,11 @@ h1, h2 {
     font-weight: bold;
 }
 
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
 a {
     color: #4da6ff;
     text-decoration: none;
