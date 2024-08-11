@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Function to format date as "Month DD, YYYY"
+    // Function to format date as "Mon 'YY"
     function formatDate(dateString) {
         const [day, month, year] = dateString.split('-');
         const date = new Date(year, month - 1, day);
-        return `[${date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}]`;
+        return `${date.toLocaleString('en-US', { month: 'short' })} '${year.slice(-2)}`;
     }
 
     // Function to fetch and display blog posts
@@ -22,11 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     posts.forEach(post => {
                         const formattedDate = formatDate(post.date);
-                        const link = document.createElement('a');
-                        link.href = `posts/${post.filename}`;
-                        link.className = 'post-link';
-                        link.textContent = `${formattedDate} ${post.title}`;
-                        postsContainer.appendChild(link);
+                        const postElement = document.createElement('div');
+                        postElement.className = 'post-item';
+                        
+                        const dateSpan = document.createElement('span');
+                        dateSpan.className = 'post-date';
+                        dateSpan.textContent = formattedDate;
+                        
+                        const titleLink = document.createElement('a');
+                        titleLink.href = `posts/${post.filename}`;
+                        titleLink.className = 'post-title';
+                        titleLink.textContent = post.title;
+                        
+                        postElement.appendChild(dateSpan);
+                        postElement.appendChild(document.createTextNode(' ')); // Space between date and title
+                        postElement.appendChild(titleLink);
+                        
+                        postsContainer.appendChild(postElement);
                         postsContainer.appendChild(document.createElement('br'));
                         postsContainer.appendChild(document.createElement('br'));
                     });
