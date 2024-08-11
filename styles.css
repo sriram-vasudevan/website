@@ -143,17 +143,6 @@ footer {
     }
 }
 
-    .container {
-        display: flex;
-        justify-content: center;
-    }
-    
-    
-    iframe {
-        aspect-ratio: 16 / 9;
-        width: 100% !important;
-    }
-
 .post-date {
     color: #888;
     font-weight: normal;
