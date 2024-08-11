@@ -67,8 +67,8 @@ h3 {
 }
 
 p, li {
-    line-height: 1.625em;
-    margin: 1em 0;
+    line-height: 1.4em;
+    margin: 0.7em 0;
 }
 
 li a, p a {
@@ -168,7 +168,7 @@ article h2 {
 }
 
 article p {
-    margin-bottom: 1em;
+    margin-bottom: 0.7em;
 }
 
 article img.responsive {
