@@ -120,6 +120,28 @@ footer {
     justify-content: space-between;
     padding-bottom: 32px;
 }
+@media only screen and (min-width: 600px) {
+    main {
+        max-width: 780px;
+        margin: 2em auto;
+        padding: 0 2em;
+    }
+
+    h1, h2, h3 {
+        margin-top: 1em;
+        margin-bottom: .5em;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    main {
+        margin: 0;
+        max-width: unset;
+        width: calc(100% - 2em);
+        background: initial;
+        box-shadow: none;
+    }
+}
 
     .container {
         display: flex;
