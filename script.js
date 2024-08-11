@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         postsContainer.appendChild(postElement);
                         postsContainer.appendChild(document.createElement('br'));
-                        postsContainer.appendChild(document.createElement('br'));
                     });
                 }
             }
