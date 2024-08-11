@@ -144,6 +144,25 @@ footer {
     }
 }
 
+.post-item {
+    margin-bottom: 10px;
+}
+
+.post-date {
+    color: #888;
+    font-weight: normal;
+}
+
+.post-title {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post-title:hover {
+    text-decoration: underline;
+}
+
 article {
     max-width: 100%;
     word-wrap: break-word;
