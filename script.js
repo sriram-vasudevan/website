@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.textContent = `${formattedDate} ${post.title}`;
                         postsContainer.appendChild(link);
                         postsContainer.appendChild(document.createElement('br'));
+                        postsContainer.appendChild(document.createElement('br'));
                     });
                 }
             }
