@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.className = 'post-link';
                         link.textContent = `${formattedDate} ${post.title}`;
                         postsContainer.appendChild(link);
+                        postsContainer.appendChild(document.createElement('br'));
                     });
                 }
             }
