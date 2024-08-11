@@ -112,15 +112,6 @@ nav a {
     margin-bottom: 36px;
 }
 
-.work-item {
-    margin-bottom: 20px;
-}
-
-.work {
-    color: var(--foreground-default);
-    font-weight: bold;
-}
-
 footer {
     margin-top: 1em;
     display: flex;
