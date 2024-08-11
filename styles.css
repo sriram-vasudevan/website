@@ -151,3 +151,28 @@ footer {
         box-shadow: none;
     }
 }
+
+article {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+article h1 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+article h2 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+article p {
+    margin-bottom: 1em;
+}
+
+article img.responsive {
+    max-width: 100%;
+    height: auto;
+    margin: 1em 0;
+}
