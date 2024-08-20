@@ -11,10 +11,11 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 class MarkdownConverter(FileSystemEventHandler):
-    def __init__(self, drafts_dir, posts_dir):
-        self.drafts_dir = drafts_dir
-        self.posts_dir = posts_dir
-        Path(posts_dir).mkdir(exist_ok=True)
+    def __init__(self, website_dir):
+        self.website_dir = website_dir
+        self.drafts_dir = os.path.join(website_dir, 'drafts')
+        self.posts_dir = os.path.join(website_dir, 'posts')
+        Path(self.posts_dir).mkdir(exist_ok=True)
 
     def on_modified(self, event):
         if not event.is_directory and event.src_path.endswith('.md'):
@@ -26,16 +27,15 @@ class MarkdownConverter(FileSystemEventHandler):
         
         html_content = self.convert_md_to_html(md_content)
         
-        soup = BeautifulSoup(html_content, 'html.parser')
-        title = soup.title.string if soup.title else 'Untitled'
+        # Use the same filename as the input, but change extension to .html
+        input_filename = os.path.basename(md_file_path)
+        output_filename = os.path.splitext(input_filename)[0] + '.html'
         
-        filename = self.generate_filename(title)
-        
-        output_path = os.path.join(self.posts_dir, filename)
+        output_path = os.path.join(self.posts_dir, output_filename)
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
         
-        print(f"Generated file: {filename}")
+        print(f"Generated file: {output_filename}")
         self.generate_posts_json()
 
     def convert_md_to_html(self, md_content):
@@ -93,9 +93,6 @@ class MarkdownConverter(FileSystemEventHandler):
         
         return BeautifulSoup(full_html, 'html.parser').prettify()
 
-    def generate_filename(self, title):
-        return re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-') + '.html'
-
     def parse_html_file(self, file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             soup = BeautifulSoup(file.read(), 'html.parser')
@@ -118,20 +115,20 @@ class MarkdownConverter(FileSystemEventHandler):
                     posts.append(post_info)
         # Sort posts by date (newest first)
         posts.sort(key=lambda x: datetime.strptime(x['date'], '%Y-%m-%d'), reverse=True)
-        with open('posts.json', 'w', encoding='utf-8') as f:
+        json_path = os.path.join(self.website_dir, 'posts.json')
+        with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(posts, f, ensure_ascii=False, indent=2)
-        print("Updated posts.json")
+        print(f"Updated {json_path}")
 
 if __name__ == "__main__":
-    drafts_dir = 'drafts'
-    posts_dir = 'posts'
+    website_dir = os.path.abspath('website')
     
-    event_handler = MarkdownConverter(drafts_dir, posts_dir)
+    event_handler = MarkdownConverter(website_dir)
     observer = Observer()
-    observer.schedule(event_handler, path=drafts_dir, recursive=False)
+    observer.schedule(event_handler, path=os.path.join(website_dir, 'drafts'), recursive=False)
     observer.start()
 
-    print(f"Watching for changes in {drafts_dir}...")
+    print(f"Watching for changes in {os.path.join(website_dir, 'drafts')}...")
     try:
         while True:
             time.sleep(1)
